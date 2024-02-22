@@ -1,19 +1,15 @@
 from dataclasses import dataclass
 from enum import Enum
-
-class TeamSide(Enum):
-  HOME = 1
-  AWAY = 2
+from src.team_stats import TeamSide
 
 class EventType(Enum):
   GOAL = 1
   SHOT = 2
   CORNER = 3
   POSSESSION = 4
-  YELLOW_CARD = 5
-  RED_CARD = 6
-  HALF_TIME = 7
-  FULL_TIME = 8
+  CARD = 5
+  HALF_TIME = 6
+  FULL_TIME = 7
 
 @dataclass
 class MatchEvent:
@@ -24,3 +20,14 @@ class MatchEvent:
 @dataclass
 class Shot(MatchEvent):
   on_target: bool
+
+class CardType(Enum):
+  YELLOW = 1
+  RED = 2
+
+@dataclass
+class Card(MatchEvent):
+  card_type: CardType
+
+class Possession(MatchEvent):
+  possession_percentage: int
