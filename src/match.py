@@ -1,26 +1,12 @@
 from dataclasses import dataclass
-from src.match_stats import MatchStats
-from src.match_event import MatchEvent, EventType, CardType
-from enum import Enum
+from match_event import MatchEvent, EventType, CardType
+from match_enums import TeamSide, MatchStatus
 from typing import Dict, List
 from copy import deepcopy
 import pandas as pd
+from typing import List
+from dataclasses import dataclass, field
 
-
-class TeamSide(Enum):
-  HOME = 1
-  AWAY = 2
-
-class MatchStatus(Enum):
-  FIRST_HALF = 1
-  SECOND_HALF = 2
-  COMPLETE = 3
-
-  def __str__(self):
-    return self.name.lower().replace('_', ' ')
-  
-  def from_str(status: str):
-    return MatchStatus[status.upper().replace(' ', '_')]
 
 def goal_timings_to_list(goal_timings: str):
   if pd.isna(goal_timings):
@@ -35,7 +21,7 @@ class TeamStats:
   team_name: str
   goal_count: int = 0
   goal_count_half_time: int = 0
-  goal_timings: List[int] = []
+  goal_timings: List[int] = field(default_factory=list)
   corner_count: int = 0
   yellow_cards: int = 0
   red_cards: int = 0
@@ -182,7 +168,7 @@ class MatchStats:
     return match_stats
   
   def to_dataframe(self):
-    return pd.DataFrame({
+    dictionary = {
       'home_team_name': self.home_team_stats.team_name,
       'home_team_goal_count': self.home_team_stats.goal_count,
       'home_team_goal_count_half_time': self.home_team_stats.goal_count_half_time,
@@ -211,24 +197,31 @@ class MatchStats:
       'away_team_shots_off_target': self.away_team_stats.shots_off_target,
       'away_team_fouls': self.away_team_stats.fouls,
       'away_team_possession': self.away_team_stats.possession
-    })
+    }
+
+    print(f'Dict: {dictionary}')
+
+    return pd.DataFrame(dictionary, index=[0])
 
 
 
   
 class Match:
-  match_events: Dict[int, List[MatchEvent]]
-  match_stats : Dict[int, List[MatchStats]]
+  match_events: List[MatchEvent]
+  match_stats : List[MatchStats]
 
-  def __init__(self):
-    self.match_events = {}
-    self.match_stats = {}
+  def __init__(self, home_team: str, away_team: str):
+    self.match_events = [None]
+    self.match_stats = [MatchStats(
+      home_team_stats=TeamStats(team_name=home_team),
+      away_team_stats=TeamStats(team_name=away_team)
+    )]
 
   def process_event(self, event: MatchEvent):
     stats = deepcopy(self.match_stats[-1])
     stats.process_event(event)
-    self.match_events[event.time].append(event)
-    self.match_stats[event.time] = stats
+    self.match_events.append(event)
+    self.match_stats.append(stats)
   
   def simulate(self, events: List[MatchEvent]):
     for event in events:

@@ -1,6 +1,6 @@
 from dataclasses import dataclass
 from enum import Enum
-from src.team_stats import TeamSide
+from match_enums import TeamSide
 
 class EventType(Enum):
   GOAL = 1
@@ -29,5 +29,6 @@ class CardType(Enum):
 class Card(MatchEvent):
   card_type: CardType
 
+@dataclass
 class Possession(MatchEvent):
   possession_percentage: int
