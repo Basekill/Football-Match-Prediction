@@ -13,7 +13,7 @@ class MatchPredictor:
       cls._instance = super().__new__(cls)
     return cls._instance
 
-  def __init__(self, model_path: str = '../models/best_classifier.joblib'):
+  def __init__(self, model_path: str = 'models/best_classifier.joblib'):
     if hasattr(self, 'model'):
       return
     self.model = load(model_path)
