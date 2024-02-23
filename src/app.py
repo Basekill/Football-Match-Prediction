@@ -4,7 +4,7 @@ from match_enums import TeamSide
 from match_event import MatchEvent, EventType, CardType, Shot, Possession, Card
 from match_predictor import MatchPredictor
 
-@st.cache
+@st.cache_data
 def predict_match_result(match_stats):
   match_predictor = MatchPredictor()
   match_prediction = match_predictor.predict(match_stats)
@@ -96,7 +96,12 @@ def main():
     match_prediction = predict_match_result(match_stats)
 
     st.write("Match Prediction:")
-    st.bar_chart(match_prediction)
+    chart_data = {
+      'Home Win': match_prediction[0],
+      'Draw': match_prediction[1],
+      'Away Win': match_prediction[2]
+    }
+    st.bar_chart(chart_data)
 
 
 # Run the main function

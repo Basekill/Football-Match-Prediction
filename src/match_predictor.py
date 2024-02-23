@@ -20,14 +20,11 @@ class MatchPredictor:
 
   def predict(self, match_stats: MatchStats) -> MatchPrediction:
     df = match_stats.to_dataframe()
-    print(f'Predicting match result for {df["home_team_name"]} vs {df["away_team_name"]}')
-    print(f'df: {df}')
     probabilities = self.model.predict_proba(df)
-    print(f'Probabilities: {probabilities}')
     match_prediction = MatchPrediction(
-      home_win=probabilities[0][0],
+      away_win=probabilities[0][0],
       draw=probabilities[0][1],
-      away_win=probabilities[0][2]
+      home_win=probabilities[0][2]
     )
 
     return match_prediction

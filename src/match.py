@@ -169,10 +169,10 @@ class MatchStats:
   
   def to_dataframe(self):
     dictionary = {
-      'home_team_name': self.home_team_stats.team_name,
-      'home_team_goal_count': self.home_team_stats.goal_count,
+      # 'home_team_name': self.home_team_stats.team_name,
+      # 'home_team_goal_count': self.home_team_stats.goal_count,
       'home_team_goal_count_half_time': self.home_team_stats.goal_count_half_time,
-      'home_team_goal_timings': goal_timings_to_str(self.home_team_stats.goal_timings),
+      # 'home_team_goal_timings': goal_timings_to_str(self.home_team_stats.goal_timings),
       'home_team_corner_count': self.home_team_stats.corner_count,
       'home_team_yellow_cards': self.home_team_stats.yellow_cards,
       'home_team_red_cards': self.home_team_stats.red_cards,
@@ -183,10 +183,10 @@ class MatchStats:
       'home_team_shots_off_target': self.home_team_stats.shots_off_target,
       'home_team_fouls': self.home_team_stats.fouls,
       'home_team_possession': self.home_team_stats.possession,
-      'away_team_name': self.away_team_stats.team_name,
-      'away_team_goal_count': self.away_team_stats.goal_count,
+      # 'away_team_name': self.away_team_stats.team_name,
+      # 'away_team_goal_count': self.away_team_stats.goal_count,
       'away_team_goal_count_half_time': self.away_team_stats.goal_count_half_time,
-      'away_team_goal_timings': goal_timings_to_str(self.away_team_stats.goal_timings),
+      # 'away_team_goal_timings': goal_timings_to_str(self.away_team_stats.goal_timings),
       'away_team_corner_count': self.away_team_stats.corner_count,
       'away_team_yellow_cards': self.away_team_stats.yellow_cards,
       'away_team_red_cards': self.away_team_stats.red_cards,
@@ -198,8 +198,6 @@ class MatchStats:
       'away_team_fouls': self.away_team_stats.fouls,
       'away_team_possession': self.away_team_stats.possession
     }
-
-    print(f'Dict: {dictionary}')
 
     return pd.DataFrame(dictionary, index=[0])
 
