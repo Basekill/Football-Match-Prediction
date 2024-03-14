@@ -126,7 +126,7 @@ class MatchStats:
   def from_dataframe(df):
     home_team_stats = TeamStats(
       team_name=df['home_team_name'],
-      goal_count=df['home_team_goal_count'],
+      # goal_count=df['home_team_goal_count'],
       goal_count_half_time=df['home_team_goal_count_half_time'],
       goal_timings=goal_timings_to_list(df['home_team_goal_timings']),
       corner_count=df['home_team_corner_count'],
@@ -144,7 +144,7 @@ class MatchStats:
 
     away_team_stats = TeamStats(
       team_name=df['away_team_name'],
-      goal_count=df['away_team_goal_count'],
+      # goal_count=df['away_team_goal_count'],
       goal_count_half_time=df['away_team_goal_count_half_time'],
       goal_timings=goal_timings_to_list(df['away_team_goal_timings']),
       corner_count=df['away_team_corner_count'],

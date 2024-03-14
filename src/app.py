@@ -19,7 +19,7 @@ def main():
   with col1:
     st.write("Home Team")
     home_team_name = st.text_input("Team Name", key="home_team_name")
-    home_team_goal_count = st.slider("Goal Count", 0, 10, 0, key="home_goal_count")
+    # home_team_goal_count = st.slider("Goal Count", 0, 10, 0, key="home_goal_count")
     home_team_goal_count_half_time = st.slider("Goal Count at Half Time", 0, 10, 0, key="home_goal_count_half_time")
     home_team_corner_count = st.slider("Corner Count", 0, 20, 0, key="home_corner_count")
     home_team_yellow_cards = st.slider("Yellow Cards", 0, 10, 0, key="home_yellow_cards")
@@ -34,7 +34,7 @@ def main():
     with col2:
       st.write("Away Team")
       away_team_name = st.text_input("Team Name", key="away_team_name")
-      away_team_goal_count = st.slider("Goal Count", 0, 10, 0, key="away_goal_count")
+      # away_team_goal_count = st.slider("Goal Count", 0, 10, 0, key="away_goal_count")
       away_team_goal_count_half_time = st.slider("Goal Count at Half Time", 0, 10, 0, key="away_goal_count_half_time")
       away_team_corner_count = st.slider("Corner Count", 0, 20, 0, key="away_corner_count")
       away_team_yellow_cards = st.slider("Yellow Cards", 0, 10, 0, key="away_yellow_cards")
@@ -54,7 +54,7 @@ def main():
   
   home_team_stats = TeamStats(
     team_name=home_team_name,
-    goal_count=home_team_goal_count,
+    # goal_count=home_team_goal_count,
     goal_count_half_time=home_team_goal_count_half_time,
     corner_count=home_team_corner_count,
     yellow_cards=home_team_yellow_cards,
@@ -70,7 +70,7 @@ def main():
 
   away_team_stats = TeamStats(
     team_name=away_team_name,
-    goal_count=away_team_goal_count,
+    # goal_count=away_team_goal_count,
     goal_count_half_time=away_team_goal_count_half_time,
     corner_count=away_team_corner_count,
     yellow_cards=away_team_yellow_cards,
